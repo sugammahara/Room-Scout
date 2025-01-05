@@ -1,0 +1,72 @@
+@import "../../css-config/mixins.scss";
+.main-header {
+  width: 100%;
+  padding: 0 20px;
+  color: black;
+
+  border-bottom: 1px solid rgba(193, 183, 183, 0.1);
+  z-index: 99;
+  @include md {
+    padding: 0 40px;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    height: 50px;
+    max-width: 1200px;
+    @include md {
+      height: 70px;
+    }
+  }
+  .left {
+    align-items: left;
+    list-style-type: none;
+    display: none;
+    gap: 25px;
+    @include md {
+      display: flex;
+    }
+    li {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include md {
+      gap: 25px;
+    }
+    svg {
+      font-size: 20px;
+      cursor: pointer;
+      @include md {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.main {
+  font-style: normal;
+}
+.upload-btn{
+
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.username{
+  cursor: pointer;
+ 
+}

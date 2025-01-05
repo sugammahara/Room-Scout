@@ -1,0 +1,2 @@
+root: C:\Program Files\nvm
+path: C:\Program Files\nvm\nodejs

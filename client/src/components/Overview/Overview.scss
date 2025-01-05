@@ -1,0 +1,145 @@
+/* Overview.scss */
+@import "../../css-config/mixins.scss";
+
+.Overview-main-content {
+  background-color: #fc8181; /* bg-red-300 */
+  padding: 40px 20px; /* Adjusted padding for spacing */
+  @include md {
+    padding: 75px 40px;
+  }
+
+  .layout {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the layout stretches full height */
+    @include md {
+      max-width: 1200px;
+      flex-direction: row;
+    }
+
+    .Overview-page {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      height: auto; /* Let content expand to fit */
+      min-height: 100%; /* Ensure the page takes full height */
+      @include md {
+        flex-direction: row;
+      }
+
+      .left {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+        height: 60vh; /* Set image height to 60% of the page */
+        @include md {
+          width: 50%;
+          height: 100%;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Ensure the image covers the height */
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        @include md {
+          width: 50%;
+          padding: 40px;
+        }
+        flex-grow: 1; /* Allow content to expand vertically */
+        min-height: 60vh; /* Ensure content fills the height of the left side */
+        display: flex;
+        flex-direction: column;
+
+        .header-info {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 30px; /* Increased gap between header info */
+          flex-grow: 1; /* Allow this section to expand */
+        }
+
+        .category,
+        .location,
+        .price {
+          font-size: 20px;
+          line-height: 28px;
+          margin-bottom: 25px; /* Increased margin for more gap between elements */
+          color: #333;
+        }
+
+        .desc {
+          font-size: 14px;
+          line-height: 20px;
+          margin-bottom: 25px;
+          color: #6b6b6b;
+          cursor: pointer;
+          @include md {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 30px;
+          }
+        }
+
+        .owner-info {
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+          font-size: 16px;
+
+          .owner-label {
+            font-weight: 600;
+            color: #333;
+          }
+
+          .username {
+            font-size: 18px;
+            font-weight: 500;
+            color: #d53f8c;
+            cursor: pointer;
+            margin-left: 10px;
+          }
+        }
+
+        .cart-buttons {
+          display: flex;
+          margin-top: 30px;
+          .add-to-cart-button {
+            background-color: #e53e3e; /* bg-red-400 */
+            color: white;
+            font-size: 16px;
+            width: 100%;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+
+            &:hover {
+              background-color: #c53030; /* hover:bg-red-500 */
+            }
+
+            svg {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
