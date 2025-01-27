@@ -7,14 +7,13 @@
     "displayName": "owner"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "timestamps": true,
+    "softDelete": true
   },
   "pluginOptions": {},
   "attributes": {
     "username": {
-      "type": "string"
-    },
-    "password": {
       "type": "string"
     },
     "img": {
@@ -25,9 +24,12 @@
         "audios"
       ],
       "type": "media",
-      "multiple": true
+      "multiple": false
     },
     "name": {
+      "type": "string"
+    },
+    "password": {
       "type": "string"
     }
   }

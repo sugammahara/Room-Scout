@@ -28,3 +28,23 @@ export const postDataToApi = async (url, formData) => {
     throw err; // Rethrow the error for better error handling
   }
 };
+const params_delete = {
+  method: "DELETE",
+  headers: {
+    Authorization: "Bearer " + process.env.REACT_APP_STRIPE_APP_KEY,
+  },
+};
+
+export const removeDataFromApi = async (url) => {
+  try {
+    const { data } = await axios.delete(
+      process.env.REACT_APP_DEV_URL + url,
+      params_delete
+    );
+    return data; // return just the response data
+  } catch (err) {
+    console.error("Error deleting data:", err);
+    throw new Error(err.response ? err.response.data : "An error occurred");
+  }
+};
+

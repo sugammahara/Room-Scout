@@ -8,29 +8,34 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "timestamps": true,
+    "softDelete": true
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "img": {
       "type": "media",
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
-        "images"
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     },
     "contact": {
-      "type": "biginteger",
-      "required": true
+      "type": "biginteger"
     },
     "price": {
-      "type": "decimal",
-      "required": true
+      "type": "decimal"
+    },
+    "desc": {
+      "type": "string"
     },
     "type": {
       "type": "enumeration",
@@ -40,15 +45,14 @@
       ]
     },
     "location": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "username": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
-    "desc": {
-      "type": "richtext"
+    "verification": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

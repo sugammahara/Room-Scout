@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { Context } from "../../utils/context";
 import axios from "axios";
-import { postDataToApi } from "../../utils/api";
+import { fetchDataFromApi, postDataToApi } from "../../utils/api";
 import useFetch from "../hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -71,20 +71,20 @@ const Accounts = ({ setShowAccount }) => {
     e.preventDefault();
   };
 
-  let { data } = useFetch(
-    `/api/owners?populate=*&filters[username]=${email}&filters[password]=${password}`
-  );
+  const login_data = async () => {
+    const data = await fetchDataFromApi(
+      `/api/owners?populate=*&filters[username]=${email}&filters[password]=${password}`
+    );
+    console.log(data.data[0]);
 
-  const login_data = () => {
     if (!data.data[0]) {
-      console.log(data);
-
       alert("wrong data");
     } else {
+      alert("okay");
       checkuser(true);
       checklogin(false);
       checksignup(false);
-      set_user_data(data);
+      set_user_data(data.data[0]);
       alert("log success");
     }
   };
@@ -94,7 +94,9 @@ const Accounts = ({ setShowAccount }) => {
       <div className="opac-layer"></div>
       <div className="account-content rounded-xl">
         <div className="fav-header">
-          <span className="heading" style={{ color: "#B22222" }}>Accounts</span>
+          <span className="heading" style={{ color: "#B22222" }}>
+            Accounts
+          </span>
           <span className="close-btn">
             <span
               className="text"
@@ -108,7 +110,9 @@ const Accounts = ({ setShowAccount }) => {
 
         {user && (
           <div class="card">
-            <h1 style={{ color: "#B22222" }}>{user_data.data[0].attributes.name}</h1>
+            <h1 style={{ color: "#B22222" }}>
+              {user_data.name}
+            </h1>
             <p class="title"></p>
 
             <p>
@@ -191,7 +195,7 @@ const Accounts = ({ setShowAccount }) => {
                         Submit
                       </button>
                       <p class="text-sm font-light text-red-500 dark:text-red-400">
-                        Don't have an account yet?{' '}
+                        Don't have an account yet?{" "}
                         <div
                           onClick={() => {
                             checklogin(false);
@@ -237,7 +241,7 @@ const Accounts = ({ setShowAccount }) => {
                         type="email"
                         id="username"
                         required="required"
-                        {...register('username', { required: true })}
+                        {...register("username", { required: true })}
                         class="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                         placeholder="abc@gmail.com"
                       />
@@ -255,7 +259,7 @@ const Accounts = ({ setShowAccount }) => {
                         type="file"
                         id="img"
                         required="required"
-                        {...register('img', { required: true })}
+                        {...register("img", { required: true })}
                         onChange={(e) => setImage(e.target.files)}
                         class="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                       />
@@ -272,7 +276,7 @@ const Accounts = ({ setShowAccount }) => {
                         type="text"
                         id="username"
                         required="required"
-                        {...register('name', { required: true })}
+                        {...register("name", { required: true })}
                         class="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                         placeholder="Hari Das"
                       />
@@ -289,7 +293,7 @@ const Accounts = ({ setShowAccount }) => {
                         type="text"
                         id="password"
                         required="required"
-                        {...register('password', { required: true })}
+                        {...register("password", { required: true })}
                         class="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                         placeholder="**********"
                       />
@@ -304,7 +308,7 @@ const Accounts = ({ setShowAccount }) => {
                     </div>
                   </form>
                   <p class="text-sm font-light text-red-500 dark:text-red-400">
-                    Already have an account?{' '}
+                    Already have an account?{" "}
                     <div
                       onClick={() => {
                         checklogin(true);

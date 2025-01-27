@@ -46,20 +46,20 @@ const Search = ({ setShowSearch }) => {
             >
               <div className="image-container">
                 {" "}
-              {item.attributes.img.data&&  <img
+              {item.img&&  <img
                   src={
                     process.env.REACT_APP_DEV_URL +
-                    item.attributes.img.data[0].attributes.url
+                    item.img.url
                   }
                   alt=""
                 />}
               </div>
               <div className="prod-details">
-              <span className="name">Owner: {item.attributes.username}</span>
-                <span className="name">Type: {item.attributes.type}</span>
-                <span className="name">Location: {item.attributes.location}</span>
-                <span className="price">रू {item.attributes.price}</span>
-                <span className="desc">Description: {item.attributes.desc}</span>
+              <span className="name">Owner: {item.username}</span>
+                <span className="name">Type: {item.type}</span>
+                <span className="name">Location: {item.location}</span>
+                <span className="price">रू {item.price}</span>
+                <span className="desc">Description: {item.desc}</span>
               </div>
             </div>
           ))}

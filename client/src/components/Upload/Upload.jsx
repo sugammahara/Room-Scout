@@ -155,7 +155,7 @@ const Upload = ({ setShowUpload, setShowAccount }) => {
                 <div class="inputbox">
                   <input
                     type="text"
-                    value={user_data.data[0].attributes.username}
+                    value={user_data.username}
                     required="required"
                     {...register("username", { required: true })}
                   />

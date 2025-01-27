@@ -21,11 +21,11 @@ const Rview = ({ type }) => {
                   onClick={() => Navigate(`/o/${item.id} `)}
                   className="thumbnail"
                 >
-                  {item.attributes.img.data && (
+                  {item.img && (
                     <img
                       src={
                         process.env.REACT_APP_DEV_URL +
-                        item.attributes.img.data[0].attributes.url
+                        item.img.url
                       }
                       alt=""
                     />
@@ -33,8 +33,8 @@ const Rview = ({ type }) => {
                 </div>
 
                 <div className="Rooms-details">
-                  <span className="location">{item.attributes.location}</span>
-                  <span className="price">&#8377;{item.attributes.price}</span>
+                  <span className="location">{item.location}</span>
+                  <span className="price">&#8377;{item.price}</span>
                 </div>
               </div>
             ))}

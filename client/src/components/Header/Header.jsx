@@ -18,8 +18,8 @@ const Header = () => {
   const navigate = useNavigate();
   const {user, checkuser} = useContext(Context);
   const {user_data, set_user_for_profile} = useContext(Context);
-  
-  
+
+
   const {ShowFav, setShowFav} = useContext(Context);
   const {ShowSearch, setShowSearch} = useContext(Context);
   const {ShowAccount, setShowAccount} = useContext(Context);
@@ -30,13 +30,13 @@ const Header = () => {
 
   return (
     <div>
-      <div className="bg-red-300 drop-shadow fixed w-full top-0  main-header ">
+      <div className="fixed top-0 w-full bg-red-300 drop-shadow main-header ">
         <div className="header-content">
           <ul className="left">
             <li>
               <div
                 onClick={() => navigate("/")}
-                className=" justify-self-auto text-xl main"
+                className="text-xl justify-self-auto main"
               >
                 Room Scout
               </div>
@@ -47,28 +47,28 @@ const Header = () => {
             <li onClick={() => navigate("/Flats/:id")}>Flats</li>
             <li onClick={() => navigate("/Cu/:id")}>Contact Us</li>
             <li onClick={() => navigate("/au/:id")}>About us</li>
-          
+
           </ul>
-        
+
 
           <div className="right">
           <div  className="upload-btn" onClick={()=>setShowUpload(true)}> Upload </div>
             <HiOutlineSearch onClick={() => setShowSearch(true)} />
             <MdOutlineFavoriteBorder onClick={() => setShowFav(true)} />
             <RiAccountCircleLine onClick={() => setShowAccount(true)} />
-            
-         {user &&  <div className="username" onClick={()=>{set_user_for_profile(user_data.data[0].attributes.username);navigate('/p/:id')}}> {user_data.data[0].attributes.name} </div>}
-      
+
+         {user &&  <div className="username" onClick={()=>{set_user_for_profile(user_data.username);navigate('/p/:id')}}> {user_data.name} </div>}
+
           </div>
 
-          
+
         </div>
       </div>
       {ShowFav && <Fav/>}
       {ShowSearch && <Search setShowSearch={setShowSearch} />}
       {ShowAccount && <Accounts setShowAccount={setShowAccount} />}
       {ShowUpload && <Upload setShowUpload={setShowUpload} setShowAccount={setShowAccount} />}
-      
+
     </div>
   );
 };

@@ -22,10 +22,10 @@ const Navigate = useNavigate();
                   onClick={() => Navigate(`/o/${item.id}`)}
                   className="thumbnail"
                 >
-                {item.attributes.img.data &&  <img
+                {item.img &&  <img
                     src={
                       process.env.REACT_APP_DEV_URL +
-                      item.attributes.img.data[0].attributes.url
+                      item.img.url
                     }
                     alt=""
                   />
@@ -35,10 +35,10 @@ const Navigate = useNavigate();
 
                 <div className="Rooms-details">
                 <span key={item.id} className="location">
-                    {item.attributes.location}
+                    {item.location}
                   </span>
                   <span key={item.id} className="price">
-                    &#8377;{item.attributes.price}
+                    &#8377;{item.price}
                   </span>
                 </div>
               </div>
