@@ -5,6 +5,7 @@ import { fetchDataFromApi, removeDataFromApi } from "../../utils/api";
 
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
+import http from "../../utils/http";
 
 const VerifyPost = () => {
   const { data, setData } = useFetch(
@@ -17,42 +18,12 @@ const VerifyPost = () => {
 
   const handleVerify = async (id) => {
     try {
-      setLoading(true);
-      // Step 1: Fetch the record
-
-      const fetchResponse = await fetchDataFromApi(
-        `/api/alls?populate=*&filters[id]=${id}`
-      );
-      console.log(fetchResponse.data[0]);
       const updatedRecord = {
-        desc: fetchResponse.data[0].desc,
-        img: fetchResponse.data[0].img,
-        location: fetchResponse.data[0].location,
-        price: fetchResponse.data[0].price,
-        title: fetchResponse.data[0].title,
-        type: fetchResponse.data[0].type,
-        username: fetchResponse.data[0].username,
         verification: true,
       };
-
-      // Step 2: Delete the record from Strapi
-      const res = await removeDataFromApi(`/api/alls/` + id);
-      console.log(res);
-
-      // Step 3: Post the updated record (mark verification as true)
-
-      // const postResponse = await axios.post("http://localhost:1337/api/alls", {
-      //   data: updatedRecord,
-      // });
-
-      // Step 4: Update the local state with the new data
-      // setData((prevData) => ({
-      //   ...prevData,
-      //   data: prevData.data
-      //     .filter((item) => item.id !== id)
-      //     .concat(postResponse.data),
-      // }));
-
+      const postResponse = await axios.put(`http://localhost:1337/api/alls/${id}`, {
+        data: updatedRecord,
+      });
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -65,7 +36,10 @@ const VerifyPost = () => {
     window.open(imgUrl, "_blank");
   };
 
-  const handleDelete = () => {};
+   const handleDelete = async(id) => {
+ const res = await removeDataFromApi(`/api/alls/` + (id));
+       console.log(res);
+   };
   return (
     <div className="verify-user-container">
       <h2>Verify Post</h2>
@@ -108,7 +82,7 @@ const VerifyPost = () => {
               <td>{item.username}</td>
               <td>{item.price}</td>
               <td>{item.type}</td>
-              <td>{item.description}</td>
+              <td>{item.desc}</td>
               <td>
                 <button
                   className="verify-btn"

@@ -1,3 +1,5 @@
+
+
 .verify-user-container {
   padding: 20px;
   background-color: #f9f9f9;
@@ -34,7 +36,6 @@ h2 {
   background-color: #f1f1f1;
 }
 
-/* Image Styles */
 .user-img {
   width: 100px; /* Fixed size */
   height: 100px;
@@ -70,7 +71,7 @@ h2 {
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.3s ease;
- 
+
 }
 
 .reject-btn:hover {

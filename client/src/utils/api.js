@@ -37,14 +37,13 @@ const params_delete = {
 
 export const removeDataFromApi = async (url) => {
   try {
-    const { data } = await axios.delete(
+    const data = await axios.delete(
       process.env.REACT_APP_DEV_URL + url,
       params_delete
     );
-    return data; // return just the response data
+    return data.data; // return just the response data
   } catch (err) {
     console.error("Error deleting data:", err);
     throw new Error(err.response ? err.response.data : "An error occurred");
   }
 };
-

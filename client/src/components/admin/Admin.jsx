@@ -1,16 +1,12 @@
-// const deleteItem = async (id) => {
-//   try {
-//     await axios.delete(`${process.env.REACT_APP_DEV_URL}/alls/${id}`);
-//     setAlls((prevAlls) => prevAlls.filter((item) => item.id !== id));
-//   } catch (error) {
-//     console.error("Error deleting item:", error);
-//   }
-// };
 import "./admin.css";
-
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Admin = ({ children }) => {
+  const location = useLocation(); // Get the current route
+
+  const isActive = (path) => location.pathname === path; // Check if route matches
+
   return (
     <div className="admin-layout">
       <header className="admin-header">
@@ -23,13 +19,34 @@ const Admin = ({ children }) => {
           <nav>
             <ul>
               <li>
-                <a href="/admin/verify_post">Verify User</a>
+                <a
+                  href="/admin/verify_post"
+                  className={
+                    isActive("/admin/verify_post") ? "active-link" : ""
+                  }
+                >
+                  Verify User
+                </a>
               </li>
               <li>
-                <a href="/admin/delete_user">Delete User</a>
+                <a
+                  href="/admin/delete_user"
+                  className={
+                    isActive("/admin/delete_user") ? "active-link" : ""
+                  }
+                >
+                  Delete User
+                </a>
               </li>
               <li>
-                <a href="/admin/delete_post">Delete Post</a>
+                <a
+                  href="/admin/delete_post"
+                  className={
+                    isActive("/admin/delete_post") ? "active-link" : ""
+                  }
+                >
+                  Delete Post
+                </a>
               </li>
             </ul>
           </nav>

@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alls",
+  "info": {
+    "singularName": "all",
+    "pluralName": "alls",
+    "displayName": "all"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "biginteger"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "location": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "rooms",
+        "flats"
+      ]
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "verification": {
+      "type": "boolean"
+    }
+  }
+}

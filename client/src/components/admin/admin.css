@@ -97,3 +97,16 @@
   color: #333;
   font-size: 16px;
 }
+.active-link {
+  background-color: #d5070b;
+  color: white;
+  box-shadow: 0 10px 10px 2px #ff4d4f; /* Glow effect */
+  transition: all 0.3s ease;
+}
+
+.active-link:hover {
+  box-shadow: 0 0 15px 3px #ff4d4f; /* Stronger glow on hover */
+}
+.logout-btn{
+  max-width: 80px;
+}

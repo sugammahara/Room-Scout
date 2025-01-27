@@ -1,39 +1,31 @@
 import { createContext, useEffect, useState } from "react";
+
 import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
 const AppContext = ({ children }) => {
-
-
-
   const [favitems, setfavitems] = useState([]);
-
-
-
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
-  
   const [user, checkuser] = useState(false);
   const [login, checklogin] = useState(true);
   const [signup, checksignup] = useState(false);
   const [user_data, set_user_data] = useState("");
-
-
-
-
-
   const [ShowFav, setShowFav] = useState(false);
   const [ShowSearch, setShowSearch] = useState(false);
   const [ShowAccount, setShowAccount] = useState(false);
   const [ShowUpload, setShowUpload] = useState(false);
 
-  useEffect(() => {}, [favitems]);
-
-
-
+  useEffect(() => {
+    if (!user_data) {
+      const user = JSON.parse(localStorage.getItem("user_data"));
+      if (user) {
+        set_user_data(user);
+        checkuser(true);
+      }
+    }
+  }, [user_data]);
 
   const handleAddToFav = (rooms) => {
     let items = [...favitems];
@@ -47,11 +39,7 @@ const AppContext = ({ children }) => {
     setfavitems(items);
   };
 
-
-  const [user_for_profile, set_user_for_profile] = useState('');
-  
-
-
+  const [user_for_profile, set_user_for_profile] = useState("");
 
   const handleRemoveFromFav = (rooms) => {
     let items = [...favitems];
@@ -59,24 +47,36 @@ const AppContext = ({ children }) => {
     setfavitems(items);
   };
 
-
-
-
   return (
     <Context.Provider
-      value={{ favitems, setfavitems, handleAddToFav, handleRemoveFromFav,
-      email,setEmail,
-    password,setPassword,
-  user,checkuser,
-login,checklogin,
-signup,checksignup,
-user_data,set_user_data,
-ShowFav, setShowFav,
-ShowSearch, setShowSearch,
-ShowAccount, setShowAccount,
-ShowUpload, setShowUpload,
-user_for_profile, set_user_for_profile
-}}
+      value={{
+        favitems,
+        setfavitems,
+        handleAddToFav,
+        handleRemoveFromFav,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        user,
+        checkuser,
+        login,
+        checklogin,
+        signup,
+        checksignup,
+        user_data,
+        set_user_data,
+        ShowFav,
+        setShowFav,
+        ShowSearch,
+        setShowSearch,
+        ShowAccount,
+        setShowAccount,
+        ShowUpload,
+        setShowUpload,
+        user_for_profile,
+        set_user_for_profile,
+      }}
     >
       {children}
     </Context.Provider>

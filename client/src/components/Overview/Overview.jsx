@@ -79,7 +79,7 @@ const Overview = () => {
                       if (!user) {
                         nologin();
                       } else {
-                        handleAddToFav(data);
+                        handleAddToFav(product);
                       }
                     }}
                   >
