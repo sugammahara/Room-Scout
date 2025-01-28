@@ -1,21 +1,29 @@
-import React from "react";
-import useFetch from "../hooks/useFetch";
+import React, { useEffect } from "react";
+
 import { removeDataFromApi } from "../../utils/api";
+import useFetch from "../hooks/useFetch";
 
 const DeletePost = () => {
   const { data, setData } = useFetch(
-    "/api/alls?populate=*&filters[verification]=false"
+    "/api/alls?populate=*&filters[verification]=true"
   );
   const handleImageClick = (imgUrl) => {
     window.open(imgUrl, "_blank");
   };
-  const handleDelete = async(id) => {
-const res = await removeDataFromApi(`/api/alls/` + (id));
-      console.log(res);
+  const handleDelete = async (id) => {
+    const res = await removeDataFromApi(`/api/alls/` + id);
+    console.log(res);
+    window.location.reload();
   };
+  useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("admin_data"));
+      if (!user) {
+        window.location.href = "/admin/login";
+      }
+    });
   return (
     <div className="verify-user-container">
-      <h2>Delete User </h2>
+      <h2>Delete Post </h2>
       <table className="verify-user-table">
         <thead>
           <tr>
@@ -57,9 +65,9 @@ const res = await removeDataFromApi(`/api/alls/` + (id));
               <td>
                 <button
                   className="reject-btn"
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item.documentId)}
                 >
-                  Reject
+                  Delete
                 </button>
               </td>
             </tr>

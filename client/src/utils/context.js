@@ -9,7 +9,7 @@ const AppContext = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, checkuser] = useState(false);
-  const [login, checklogin] = useState(true);
+  const [login, checklogin] = useState(false);
   const [signup, checksignup] = useState(false);
   const [user_data, set_user_data] = useState("");
   const [ShowFav, setShowFav] = useState(false);
@@ -23,6 +23,8 @@ const AppContext = ({ children }) => {
       if (user) {
         set_user_data(user);
         checkuser(true);
+      }else{
+        checklogin(true);
       }
     }
   }, [user_data]);

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "all",
     "pluralName": "alls",
-    "displayName": "all"
+    "displayName": "all",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -37,17 +38,20 @@
       ]
     },
     "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "verification": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

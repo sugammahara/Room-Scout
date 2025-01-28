@@ -1,9 +1,14 @@
 import "./Flats.scss";
+
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+
 const Flats = ({ heading }) => {
   const Navigate = useNavigate();
-  const { data } = useFetch(`/api/alls?populate=*&filters[type]=flats`);
+  const { data } = useFetch(
+    `/api/alls?populate=*&filters[type]=flats&filters[verification]=true`
+  );
+
   if (!data) return;
   return (
     <div className="pl-8 Flats-container">

@@ -1,10 +1,14 @@
 import "./Rooms.scss";
-import { useNavigate } from "react-router-dom";
+
 import useFetch from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const Rooms = ({ heading }) => {
   const Navigate = useNavigate();
-  const { data } = useFetch(`/api/alls?populate=*&filters[type]=rooms`);
+  const { data } = useFetch(
+    `/api/alls?populate=*&filters[type]=rooms&filters[verification]=true`
+  );
+
   if (!data) return;
   console.log(data);
 

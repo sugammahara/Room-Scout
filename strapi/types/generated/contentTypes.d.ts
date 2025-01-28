@@ -398,9 +398,38 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAdminAdmin extends Struct.CollectionTypeSchema {
+  collectionName: 'admins';
+  info: {
+    displayName: 'admin';
+    pluralName: 'admins';
+    singularName: 'admin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::admin.admin'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    password: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    username: Schema.Attribute.String;
+  };
+}
+
 export interface ApiAllAll extends Struct.CollectionTypeSchema {
   collectionName: 'alls';
   info: {
+    description: '';
     displayName: 'all';
     pluralName: 'alls';
     singularName: 'all';
@@ -427,7 +456,9 @@ export interface ApiAllAll extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     username: Schema.Attribute.String;
-    verification: Schema.Attribute.Boolean;
+    verification: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -1105,6 +1136,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::admin.admin': ApiAdminAdmin;
       'api::all.all': ApiAllAll;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;

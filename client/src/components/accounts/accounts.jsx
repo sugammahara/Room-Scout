@@ -1,10 +1,10 @@
 import "./accounts.scss";
 
+import { fetchDataFromApi, postDataToApi } from "../../utils/api";
 import { useContext, useEffect, useRef, useState } from "react";
 
 import { Context } from "../../utils/context";
 import axios from "axios";
-import { fetchDataFromApi, postDataToApi } from "../../utils/api";
 import useFetch from "../hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

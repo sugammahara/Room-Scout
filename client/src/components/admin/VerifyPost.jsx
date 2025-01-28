@@ -4,10 +4,16 @@ import React, { useEffect, useState } from "react";
 import { fetchDataFromApi, removeDataFromApi } from "../../utils/api";
 
 import axios from "axios";
-import useFetch from "../hooks/useFetch";
 import http from "../../utils/http";
+import useFetch from "../hooks/useFetch";
 
 const VerifyPost = () => {
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("admin_data"));
+    if (!user) {
+      window.location.href = "/admin";
+    }
+  });
   const { data, setData } = useFetch(
     "/api/alls?populate=*&filters[verification]=false"
   );
@@ -21,10 +27,14 @@ const VerifyPost = () => {
       const updatedRecord = {
         verification: true,
       };
-      const postResponse = await axios.put(`http://localhost:1337/api/alls/${id}`, {
-        data: updatedRecord,
-      });
+      const postResponse = await axios.put(
+        `http://localhost:1337/api/alls/${id}`,
+        {
+          data: updatedRecord,
+        }
+      );
       setLoading(false);
+      window.location.reload();
     } catch (error) {
       setLoading(false);
       setError("Error processing the record");
@@ -36,10 +46,11 @@ const VerifyPost = () => {
     window.open(imgUrl, "_blank");
   };
 
-   const handleDelete = async(id) => {
- const res = await removeDataFromApi(`/api/alls/` + (id));
-       console.log(res);
-   };
+  const handleDelete = async (id) => {
+    const res = await removeDataFromApi(`/api/alls/` + id);
+    console.log(res);
+  };
+
   return (
     <div className="verify-user-container">
       <h2>Verify Post</h2>
@@ -86,14 +97,14 @@ const VerifyPost = () => {
               <td>
                 <button
                   className="verify-btn"
-                  onClick={() => handleVerify(item.id)}
+                  onClick={() => handleVerify(item.documentId)}
                   disabled={item.verification} // Disable if already verified
                 >
                   {item.verification ? "Verified" : "Verify"}
                 </button>
                 <button
                   className="reject-btn"
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item.documentId)}
                 >
                   Reject
                 </button>

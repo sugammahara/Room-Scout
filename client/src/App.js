@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 import AboutUs from "./components/AboutUs/AboutUs";
 import Admin from "./components/admin/Admin";
+import AdminLogin from "./components/admin/AdminLogin";
 import ContactUs from "./components/ContactUs/ContactUs";
 import { Context } from "./utils/context";
 import DeletePost from "./components/admin/DeletePost";
@@ -63,6 +64,7 @@ function App() {
             <Admin>
               <Routes>
                 <Route path="/verify_post" element={<VerifyPost />} />
+                <Route path="/login" element={<AdminLogin />} />
                 <Route path="/delete_user" element={<DeleteUser />} />
                 <Route path="/delete_post" element={<DeletePost />} />
                 <Route
