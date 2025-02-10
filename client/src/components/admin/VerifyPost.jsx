@@ -48,7 +48,7 @@ const VerifyPost = () => {
 
   const handleDelete = async (id) => {
     const res = await removeDataFromApi(`/api/alls/` + id);
-    console.log(res);
+    window.location.reload();
   };
 
   return (

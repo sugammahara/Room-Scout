@@ -16,14 +16,15 @@ const AppContext = ({ children }) => {
   const [ShowSearch, setShowSearch] = useState(false);
   const [ShowAccount, setShowAccount] = useState(false);
   const [ShowUpload, setShowUpload] = useState(false);
-
+  const [user_for_profile, set_user_for_profile] = useState("");
   useEffect(() => {
     if (!user_data) {
       const user = JSON.parse(localStorage.getItem("user_data"));
       if (user) {
         set_user_data(user);
+        set_user_for_profile(user.username);
         checkuser(true);
-      }else{
+      } else {
         checklogin(true);
       }
     }
@@ -40,8 +41,6 @@ const AppContext = ({ children }) => {
     }
     setfavitems(items);
   };
-
-  const [user_for_profile, set_user_for_profile] = useState("");
 
   const handleRemoveFromFav = (rooms) => {
     let items = [...favitems];

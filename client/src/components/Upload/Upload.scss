@@ -24,8 +24,8 @@
 .center .inputbox {
   position: relative;
   width: 300px;
-  height: 25px;
-  margin-bottom: 45px;
+  height: 35px;
+  margin-bottom: 35px;
 }
 .center .inputbox input {
   position: absolute;
@@ -65,14 +65,14 @@
   background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
   width: 200px;
-  height: 47px;
+  height: 55px;
   padding: 0 5px;
 }

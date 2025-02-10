@@ -103,13 +103,21 @@ const Upload = ({ setShowUpload, setShowAccount }) => {
                     onChange={(e) => setImage(e.target.files)}
                   />
                 </div>
-                <div class="inputbox">
+                <div className="inputbox">
                   <input
                     type="number"
                     required="required"
-                    {...register("contact", { required: true })}
+                    {...register("contact", {
+                      validate: (value) =>
+                        /^[0-9]{10}$/.test(value.toString()) ||
+                        "Must be exactly 10 digits",
+                    })}
                   />
-                  <span>Contact</span>
+                  {errors.contact ? (
+                    <span className="error">{errors.contact.message}</span>
+                  ) : (
+                    <span>Contact</span>
+                  )}
                 </div>
 
                 <div class="inputbox">

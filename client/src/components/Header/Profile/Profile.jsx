@@ -1,18 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Context } from "../../../utils/context";
 import ProfilePost from "./Profile_post/Profile_post";
-import img from "../../../assets/img.webp";
-import useFetch from "../../hooks/useFetch";
+import { fetchDataFromApi } from "../../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const Navigate = useNavigate();
   const { setShowAccount, user_for_profile } = useContext(Context);
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetchdata();
+  }, [user_for_profile]);
 
-  const { data } = useFetch(
-    `/api/owners?populate=*&filters[username]=${user_for_profile}`
-  );
+  const fetchdata = async () => {
+    const res = await fetchDataFromApi(
+      `/api/owners?populate=*&filters[username]=${user_for_profile}`
+    );
+    setData(res);
+  };
+  const handleImageClick = (imgUrl) => {
+    window.open(imgUrl, "_blank");
+  };
 
   return (
     <div>
@@ -30,6 +39,11 @@ const Profile = () => {
                 {data.data[0].img && (
                   <img
                     class="w-32 h-32 rounded-full mx-auto"
+                    onClick={() =>
+                      handleImageClick(
+                        process.env.REACT_APP_DEV_URL + data.data[0].img.url
+                      )
+                    }
                     src={process.env.REACT_APP_DEV_URL + data.data[0].img.url}
                     alt=""
                   />
@@ -57,7 +71,7 @@ const Profile = () => {
           </div>
         ))}
       </div>
-      <ProfilePost />
+      <ProfilePost useremail={user_for_profile} />
     </div>
   );
 };

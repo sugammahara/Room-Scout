@@ -43,7 +43,7 @@ const Admin = ({ children }) => {
                       isActive("/admin/verify_post") ? "active-link" : ""
                     }
                   >
-                    Verify User
+                    Verify Post
                   </a>
                 </li>
                 <li>

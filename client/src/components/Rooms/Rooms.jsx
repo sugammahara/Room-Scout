@@ -8,6 +8,7 @@ const Rooms = ({ heading }) => {
   const { data } = useFetch(
     `/api/alls?populate=*&filters[type]=rooms&filters[verification]=true`
   );
+ 
 
   if (!data) return;
   console.log(data);
