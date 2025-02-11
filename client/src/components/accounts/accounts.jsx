@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Accounts = ({ setShowAccount }) => {
   const [image, setImage] = useState();
+  const [confirmPassword, setConfirmPassword] = useState("");
   const {
     register,
     handleSubmit,
@@ -269,19 +270,31 @@ const Accounts = ({ setShowAccount }) => {
 
                     <div>
                       <label
-                        for="password"
-                        class="block mb-2 text-sm font-medium text-red-900 dark:text-red-100"
+                        htmlFor="password"
+                        className="block mb-2 text-sm font-medium text-red-900 dark:text-red-100"
                       >
                         Password
                       </label>
                       <input
-                        type="text"
+                        type="password"
                         id="password"
                         required="required"
-                        {...register("password", { required: true })}
-                        class="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+                        {...register("password", {
+                          required: "Password is required",
+                          pattern: {
+                            value: /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/,
+                            message:
+                              "Password must be at least 8 characters long, include one uppercase letter and one special character.",
+                          },
+                        })}
+                        className="bg-red-50 border border-red-300 text-red-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
                         placeholder="**********"
                       />
+                      {errors.password && (
+                        <p className="mt-1 text-sm" style={{ color: "white" }}>
+                          {errors.password.message}
+                        </p>
+                      )}
                     </div>
 
                     <div class="inputbox">
