@@ -7,8 +7,8 @@ const Rooms = ({ heading }) => {
   const Navigate = useNavigate();
   const { data } = useFetch(
     `/api/alls?populate=*&filters[type]=rooms&filters[verification]=true`
+    // select * from alls where type= Rooms;
   );
- 
 
   if (!data) return;
   console.log(data);
@@ -44,6 +44,9 @@ const Rooms = ({ heading }) => {
                   </div>
                   <span key={`price-${item.id}`} className="price">
                     रू {item.price}
+                  </span>{" "}
+                  <span key={`price-${item.id}`} style={{ display: "block" }}>
+                    Status: {item.book_status ? "Booked" : "Not Booked"}
                   </span>
                 </div>
               </div>

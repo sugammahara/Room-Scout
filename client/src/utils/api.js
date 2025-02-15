@@ -47,3 +47,18 @@ export const removeDataFromApi = async (url) => {
     throw new Error(err.response ? err.response.data : "An error occurred");
   }
 };
+
+const params_update = {
+  method: "PUT",
+  headers: {
+    Authorization: "Bearer " + process.env.REACT_APP_STRIPE_APP_KEY,
+  },
+};
+
+export const update_data_to_api = async (url, formData) => {
+  const data = await axios.put(process.env.REACT_APP_DEV_URL + url, {
+    data: formData,
+  });
+  console.log(data); // This will execute before returning the data
+  return data;
+};

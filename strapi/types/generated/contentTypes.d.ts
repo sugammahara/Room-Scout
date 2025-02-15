@@ -438,6 +438,7 @@ export interface ApiAllAll extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    book_status: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     contact: Schema.Attribute.BigInteger;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

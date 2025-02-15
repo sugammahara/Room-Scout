@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Context } from "../../../../utils/context";
 import { fetchDataFromApi } from "../../../../utils/api";
-import { removeDataFromApi } from "../../../../utils/api";
+import { removeDataFromApi, update_data_to_api } from "../../../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePost = ({ useremail }) => {
@@ -16,6 +16,13 @@ const ProfilePost = ({ useremail }) => {
   const handleDelete = async (id) => {
     const res = await removeDataFromApi(`/api/alls/` + id);
     console.log(res);
+    window.location.reload();
+  };
+  const handleupdate = async (id, status) => {
+    const formData = {
+      book_status: status,
+    };
+    const res = await update_data_to_api(`/api/alls/` + id, formData);
     window.location.reload();
   };
   const [data, setData] = useState();
@@ -62,12 +69,40 @@ const ProfilePost = ({ useremail }) => {
                       &#8377;{item.price}
                     </span>
                     {showDelete && (
-                      <button
-                        className="reject-btn"
-                        onClick={() => handleDelete(item.documentId)}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                          gap: "5px",
+                        }}
                       >
-                        Delete
-                      </button>
+                        <button
+                          className="reject-btn"
+                          style={{ borderRadius: "40px" }}
+                          onClick={() => handleDelete(item.documentId)}
+                        >
+                          Delete
+                        </button>
+                        {!item.book_status ? (
+                          <button
+                            className="reject-btn"
+                            style={{ borderRadius: "40px" }}
+                            onClick={() => handleupdate(item.documentId, true)}
+                          >
+                            Mark Booked
+                          </button>
+                        ) : (
+                          <button
+                            className="reject-btn"
+                            style={{ borderRadius: "40px" }}
+                            onClick={() => handleupdate(item.documentId, false)}
+                          >
+                            UnMark booking
+                          </button>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>

@@ -42,6 +42,9 @@ const Flats = ({ heading }) => {
                   <span key={item.id} className="price">
                     रू {item.price}
                   </span>
+                  <span key={`price-${item.id}`} style={{ display: "block" }}>
+                    Status: {item.book_status ? "Booked" : "Not Booked"}
+                  </span>
                 </div>
               </div>
             ))}

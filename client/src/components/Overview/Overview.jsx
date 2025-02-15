@@ -57,6 +57,10 @@ const Overview = () => {
                   <span className="price">Price: रू {product.price}</span>
                   <span className="location">Location: {product.location}</span>
                   <span className="desc">{product.desc}</span>
+                  <span>
+                    {" "}
+                    Status : {product.book_status ? "Booked" : "Not Booked"}
+                  </span>
                 </div>
 
                 <div className="owner-info">
